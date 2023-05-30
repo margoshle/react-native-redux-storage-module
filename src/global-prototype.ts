@@ -1,4 +1,4 @@
-import type { ErrorResponse } from './lib/index';
+import type { ErrorResponse } from './src/index';
 
 declare global {
   /**

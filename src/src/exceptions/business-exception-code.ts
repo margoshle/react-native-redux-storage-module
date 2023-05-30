@@ -1,0 +1,8 @@
+export enum BusinessExceptionCode {
+  REQUEST_TIME_OUT,
+  UNAUTHORIZED,
+  UNEXPECTED_ERROR,
+  EXP_TOKEN,
+  MAX_RETRIES_EXCEEDED,
+  NETWORK_ERROR,
+}
