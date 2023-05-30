@@ -1,6 +1,6 @@
 {
-  "name": "react-native-redux-storge-module",
-  "version": "0.1.0",
+  "name": "react-native-redux-storage-module",
+  "version": "1.0.0",
   "description": "test",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -40,24 +40,27 @@
     "ios",
     "android"
   ],
-  "repository": "https://github.com/margoshle/react-native-redux-storge-module",
+  "repository": "https://github.com/margoshle/react-native-redux-storage-module",
   "author": "margosh.le <hoangmanhle0396@gmail.com> (https://github.com/margoshle)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/margoshle/react-native-redux-storge-module/issues"
+    "url": "https://github.com/margoshle/react-native-redux-storage-module/issues"
   },
-  "homepage": "https://github.com/margoshle/react-native-redux-storge-module#readme",
+  "homepage": "https://github.com/margoshle/react-native-redux-storage-module#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
   "devDependencies": {
-    "@evilmartians/lefthook": "^1.2.2",
+    "@babel/plugin-proposal-decorators": "^7.22.3",
     "@commitlint/config-conventional": "^17.0.2",
+    "@evilmartians/lefthook": "^1.2.2",
     "@react-native-community/eslint-config": "^3.0.2",
     "@release-it/conventional-changelog": "^5.0.0",
     "@types/jest": "^28.1.2",
+    "@types/lodash.get": "^4.4.7",
     "@types/react": "~17.0.21",
     "@types/react-native": "0.70.0",
+    "@types/redux-logger": "^3.0.9",
     "commitlint": "^17.0.2",
     "del-cli": "^5.0.0",
     "eslint": "^8.4.1",
@@ -155,5 +158,15 @@
         }
       ]
     ]
+  },
+  "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.18.1",
+    "@reduxjs/toolkit": "^1.9.5",
+    "lodash.get": "^4.4.2",
+    "react-redux": "^8.0.5",
+    "redux-logger": "^3.0.6",
+    "redux-persist": "^6.0.0",
+    "redux-persist-transform-compress": "^4.2.0",
+    "redux-saga": "^1.2.3"
   }
 }
