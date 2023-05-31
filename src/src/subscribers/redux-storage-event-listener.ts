@@ -17,14 +17,14 @@ type IEventListener = {
   [P in IEventKeys]: ICallback;
 };
 
-class ReduxStorageEvetListinerImpl {
-  private static _instance?: ReduxStorageEvetListinerImpl;
-  static instance(): ReduxStorageEvetListinerImpl {
-    if (!ReduxStorageEvetListinerImpl._instance) {
-      ReduxStorageEvetListinerImpl._instance =
-        new ReduxStorageEvetListinerImpl();
+class ReduxStorageEventListenerImpl {
+  private static _instance?: ReduxStorageEventListenerImpl;
+  static instance(): ReduxStorageEventListenerImpl {
+    if (!ReduxStorageEventListenerImpl._instance) {
+      ReduxStorageEventListenerImpl._instance =
+        new ReduxStorageEventListenerImpl();
     }
-    return ReduxStorageEvetListinerImpl._instance;
+    return ReduxStorageEventListenerImpl._instance;
   }
   private _events: Array<EmitterSubscription> = [];
   constructor() {}
@@ -36,7 +36,7 @@ class ReduxStorageEvetListinerImpl {
 
     Object.keys(events).forEach((e) => {
       const subscriptions = DeviceEventEmitter.addListener(
-        EventKeys[e as IEventKeys],
+        EventKeys[e as IEventKeys] as string,
         events[e as IEventKeys]
       );
       this._events.push(subscriptions);
@@ -50,4 +50,5 @@ class ReduxStorageEvetListinerImpl {
   }
 }
 
-export const ReduxStorageEvetListiner = ReduxStorageEvetListinerImpl.instance();
+export const ReduxStorageEventListener =
+  ReduxStorageEventListenerImpl.instance();

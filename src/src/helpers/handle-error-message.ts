@@ -30,14 +30,14 @@ export function handleErrorMessage(error: any): ErrorResponse {
       return {
         code: status,
         message: message,
-        status: getExceiptionCode(status),
+        status: getExceptionCode(status),
       };
     }
 
     return {
       code: status,
       message: 'Error occurred. Please try again.',
-      status: getExceiptionCode(status),
+      status: getExceptionCode(status),
     };
   } else {
     if (error && typeof error === 'object') {
@@ -67,26 +67,26 @@ export function handleErrorMessage(error: any): ErrorResponse {
         return {
           code: code,
           message: message,
-          status: getExceiptionCode(status),
+          status: getExceptionCode(status),
         };
       }
 
       return {
         code: code,
         message: 'Error occurred. Please try again.',
-        status: getExceiptionCode(status),
+        status: getExceptionCode(status),
       };
     }
 
     return {
       code: HttpStatusCode.BAD_REQUEST,
       message: 'Error occurred. Please try again.',
-      status: getExceiptionCode(HttpStatusCode.BAD_REQUEST),
+      status: getExceptionCode(HttpStatusCode.BAD_REQUEST),
     };
   }
 }
 
-export function getExceiptionCode(statusCode: number): BusinessExceptionCode {
+export function getExceptionCode(statusCode: number): BusinessExceptionCode {
   switch (statusCode) {
     case HttpStatusCode.UNAUTHORIZED:
       return BusinessExceptionCode.UNAUTHORIZED;

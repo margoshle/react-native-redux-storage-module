@@ -4,5 +4,5 @@ export * from './exceptions';
 export * from './helpers';
 export * from './repositories';
 export * from './storage';
-export * from './subcribers';
+export * from './subscribers';
 export * from './hook';
