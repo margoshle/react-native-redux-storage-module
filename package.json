@@ -1,6 +1,6 @@
 {
   "name": "react-native-redux-storage-module",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "test",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -38,7 +38,12 @@
   "keywords": [
     "react-native",
     "ios",
-    "android"
+    "android",
+    "react-native-redux-storage-module",
+    "rn-redux-storage-module",
+    "redux-storage",
+    "rn-storage-module",
+    "redux storage"
   ],
   "repository": "https://github.com/margoshle/react-native-redux-storage-module",
   "author": "margosh.le <hoangmanhle0396@gmail.com> (https://github.com/margoshle)",
