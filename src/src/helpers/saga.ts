@@ -47,7 +47,7 @@ export function* invoke(options: ISagaOptions) {
      * check connect to internet
      * */
     if (!isConnected) {
-      DeviceEventEmitter.emit(EventKeys.LOST_CONNECT);
+      DeviceEventEmitter.emit(EventKeys.LOST_CONNECT.toString());
       return;
     }
 
@@ -90,7 +90,7 @@ export function* invoke(options: ISagaOptions) {
       errorMessage &&
       errorMessage.status === BusinessExceptionCode.EXP_TOKEN
     ) {
-      DeviceEventEmitter.emit(EventKeys.EXP_TOKEN, {
+      DeviceEventEmitter.emit(EventKeys.EXP_TOKEN.toString(), {
         error: errorMessage,
       });
       return;
@@ -113,9 +113,9 @@ export function* invoke(options: ISagaOptions) {
     if (typeof handleError === 'function') {
       yield handleError(errorMessage);
     } else if (errorMessage.code === 'ERR_NETWORK') {
-      DeviceEventEmitter.emit(EventKeys.LOST_CONNECT);
+      DeviceEventEmitter.emit(EventKeys.LOST_CONNECT.toString());
     } else {
-      DeviceEventEmitter.emit(EventKeys.SHOW_MESSAGE_ERROR, {
+      DeviceEventEmitter.emit(EventKeys.SHOW_MESSAGE_ERROR.toString(), {
         error: errorMessage,
       });
     }

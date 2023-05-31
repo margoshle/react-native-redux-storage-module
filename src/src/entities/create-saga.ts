@@ -33,7 +33,7 @@ function getSpawnType(spawnType: SpawnType): any {
     case 'takeMaybe':
       return takeMaybe;
     default:
-      return undefined;
+      return 'takeEvery';
   }
 }
 
@@ -61,7 +61,7 @@ export function createSaga<
   };
 
   if (sagas && Object.keys(sagas).length > 0) {
-    const _saga = function* createNewsaga() {
+    const _saga = function* createNewSaga() {
       yield all(
         Object.keys(sagas)
           .map((sagaName: string | keyof typeof sagas) =>

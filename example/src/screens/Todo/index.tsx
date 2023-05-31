@@ -1,6 +1,8 @@
+/* eslint-disable no-bitwise */
 import {
   Button,
   FlatList,
+  Pressable,
   SafeAreaView,
   StyleSheet,
   Text,
@@ -38,21 +40,35 @@ function TodoScreen() {
     dispatch(todoSaga.actions.addTodo(newItem));
   }, [dispatch]);
 
-  console.log('todo -----> ', todo.todos);
+  const onPressDetail = React.useCallback(
+    (todoItem: ITodo) => () => {
+      dispatch(
+        todoSaga.actions.getDetail({
+          id: todoItem.id,
+          callback: (data: ITodo) => {
+            console.log('todoItem: ', data);
+          },
+        })
+      );
+    },
+    [dispatch]
+  );
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={styles.fullScreen}>
       <View style={styles.container}>
         <Button title="Add New" onPress={addNewTodoItem} />
         <FlatList
-          data={todo.todos || []}
+          data={todo.todoList || []}
           keyExtractor={(_item, index) => index.toString()}
           renderItem={({ item }) => {
             return (
-              <View style={styles.itemView}>
-                <Text style={styles.title}>{item.title}</Text>
-                <Text style={styles.description}>{item.description}</Text>
-              </View>
+              <Pressable onPress={onPressDetail(item)}>
+                <View style={styles.itemView}>
+                  <Text style={styles.title}>{item.title}</Text>
+                  <Text style={styles.description}>{item.description}</Text>
+                </View>
+              </Pressable>
             );
           }}
         />
@@ -64,6 +80,7 @@ export default TodoScreen;
 export { TodoScreen };
 
 const styles = StyleSheet.create({
+  fullScreen: { flex: 1 },
   container: {
     flex: 1,
     justifyContent: 'center',

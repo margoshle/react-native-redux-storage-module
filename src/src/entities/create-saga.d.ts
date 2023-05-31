@@ -5,9 +5,6 @@ import {
   PayloadAction,
   Reducer,
   Slice,
-  SliceCaseReducers,
-  ValidateSliceCaseReducers,
-  createSlice,
 } from '@reduxjs/toolkit';
 import type { NoInfer } from 'react-redux';
 export type SpawnType =
@@ -17,7 +14,15 @@ export type SpawnType =
   | 'takeLatest'
   | 'takeLeading'
   | undefined;
-export type GenericFunction = () => Generator<ForkEffect<never>, void, unknown>;
+
+type ConcatX<T> = (a: T, b: T) => T;
+type SagaParams<Payload> = {
+  type: string;
+  payload: Payload;
+};
+export type GenericFunction<Payload> = (
+  params: SagaParams<Payload>
+) => Generator<ForkEffect<never>, void, unknown>;
 export type RemoveUndefined<T> = {
   [K in keyof T as undefined extends T[K] ? never : K]: T[K];
 };
@@ -28,7 +33,7 @@ export type ConvertSagaAction<ActionsType> = {
         spawnType?: ActionsType[K]['spawnType'] extends SpawnType
           ? ActionsType[K]['spawnType']
           : undefined;
-        action: GenericFunction;
+        action: GenericFunction<ActionsType[K]['type']>;
       }
     : undefined;
 };
@@ -48,12 +53,6 @@ export type ICreateSagaOptions<
     | CaseReducers<NoInfer<State>, any>
     | ((builder: ActionReducerMapBuilder<NoInfer<State>>) => void);
   sagas: RemoveUndefined<ConvertSagaAction<ActionsType>>;
-};
-
-export type ISagaAction<ActionType> = {
-  [K in keyof ActionType]: ActionType[K]['isSaga'] extends undefined
-    ? GenericFunction
-    : undefined;
 };
 
 export type ISliceAction<State, ActionType> = {
@@ -79,7 +78,7 @@ export type IResult<State, ActionsType> = {
 /**
  * @interface IActionType
  *
- * @typedef {type} - typealisa payload
+ * @typedef {type} - type alias payload
  * @typedef {isSaga} - has create middleware saga
  *
  * Spawns a saga on each action dispatched to the Store that matches pattern
