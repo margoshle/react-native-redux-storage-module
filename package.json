@@ -1,7 +1,7 @@
 {
   "name": "react-native-redux-storage-module",
   "version": "1.0.2",
-  "description": "test",
+  "description": "Redux storage module with typescript",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
